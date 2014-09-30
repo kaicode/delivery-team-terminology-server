@@ -1,4 +1,4 @@
-package org.ihtsdo.snomed.server.json;
+package org.ihtsdo.snomed.server.dataservice.json;
 
 import org.json.JSONException;
 import org.junit.Before;
