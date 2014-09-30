@@ -23,6 +23,64 @@
 			"active": true,
 			"effectiveTime": "20100131",
 			"module": "900000000000207008"
+		},
+		{
+			"descriptionId": "2838971018",
+			"active": false
+		}
+	],
+	"relationships": [
+		{
+			"type": {
+				"conceptId": "116676008"
+			},
+			"target": {
+				"conceptId": "26310004"
+			},
+			"active": true
+		}
+	],
+	"statedRelationships": [
+		{
+			"type": {
+				"conceptId": "363698007"
+			},
+			"target": {
+				"conceptId": "55143001"
+			},
+			"active": false
+		},
+		{
+			"type": {
+				"conceptId": "116676008",
+				"defaultTerm": "Associated morphology (attribute)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20110131",
+				"module": "900000000000012004"
+			},
+			"target": {
+				"conceptId": "26310004",
+				"defaultTerm": "Folded structure (morphologic abnormality)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000207008"
+			},
+			"sourceId": "431371001",
+			"groupId": 1,
+			"charType": {
+				"conceptId": "900000000000010007",
+				"defaultTerm": "Stated relationship (core metadata concept)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000012004"
+			},
+			"modifier": "Existential restriction",
+			"active": true,
+			"effectiveTime": "20080731",
+			"module": "900000000000207008"
 		}
 	]
 }

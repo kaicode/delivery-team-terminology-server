@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.io.IOException;
+import java.util.Date;
 
 public class JsonComponentMergeTest {
 
@@ -22,7 +23,10 @@ public class JsonComponentMergeTest {
 		String deltaConcept = StreamUtils.readStream(getClass().getResourceAsStream("431371001-delta.json"));
 		String expectedMergedConcept = StreamUtils.readStream(getClass().getResourceAsStream("431371001-merged.json"));
 
+		long start = new Date().getTime();
 		String actualMerged = jsonComponentMerge.mergeConcept(releaseConcept, deltaConcept);
+		long millisTaken = new Date().getTime() - start;
+		System.out.println("Merge took " + millisTaken + " milliseconds.");
 
 		JSONAssert.assertEquals(expectedMergedConcept, actualMerged, true);
 	}

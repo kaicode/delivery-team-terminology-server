@@ -77,7 +77,7 @@
 			"lang": "en",
 			"term": "Folds of Bowman membrane",
 			"length": 24,
-			"active": true,
+			"active": false,
 			"effectiveTime": "20100131",
 			"module": "900000000000207008"
 		},
@@ -160,7 +160,7 @@
 			"module": "900000000000012004"
 		},
 		"modifier": "Existential restriction",
-		"active": false,
+		"active": true,
 		"effectiveTime": "20090131",
 		"module": "900000000000207008"
 	},
@@ -321,7 +321,7 @@
 			"module": "900000000000012004"
 		},
 		"modifier": "Existential restriction",
-		"active": true,
+		"active": false,
 		"effectiveTime": "20080731",
 		"module": "900000000000207008"
 	},

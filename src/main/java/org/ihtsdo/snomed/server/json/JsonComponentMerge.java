@@ -9,11 +9,13 @@ import java.util.Set;
 
 public class JsonComponentMerge {
 
-	private Map<String, String> arrayMemberIdentifiers;
+	private Map<String, String> arrayMemberIdentifierKey;
 
 	public JsonComponentMerge() {
-		arrayMemberIdentifiers = new HashMap();
-		arrayMemberIdentifiers.put("descriptions", "descriptionId");
+		arrayMemberIdentifierKey = new HashMap();
+		arrayMemberIdentifierKey.put("descriptions", "descriptionId");
+		arrayMemberIdentifierKey.put("statedRelationships", "type.conceptId,target.conceptId");
+		arrayMemberIdentifierKey.put("relationships", "type.conceptId,target.conceptId");
 	}
 
 	public String mergeConcept(String baseConcept, String deltaConcept) throws JsonComponentMergeException {
@@ -42,13 +44,13 @@ public class JsonComponentMerge {
 							Object deltaArrayMemberObject = deltaArray.get(a);
 							if (deltaArrayMemberObject instanceof JSONObject) {
 								if (memberIdentifierKey == null) {
-									memberIdentifierKey = arrayMemberIdentifiers.get(key);
+									memberIdentifierKey = arrayMemberIdentifierKey.get(key);
 									if (memberIdentifierKey == null) {
-										throw new JsonComponentMergeException("No array member identifier attribute name set for array, arrayName:" + key);
+										throw new JsonComponentMergeException("No array member identifier key available for array, arrayName:" + key);
 									}
 								}
 								JSONObject deltaArrayMember = (JSONObject) deltaArrayMemberObject;
-								String memberId = deltaArrayMember.getString(memberIdentifierKey);
+								String memberId = getArrayMemberIdentifier(memberIdentifierKey, deltaArrayMember);
 								JSONObject baseArrayMember = getJSONObjectArrayMember(baseArray, memberIdentifierKey, memberId);
 								if (baseArrayMember != null) {
 									mergeObjects(baseArrayMember, deltaArrayMember);
@@ -72,10 +74,28 @@ public class JsonComponentMerge {
 		return base;
 	}
 
+	private String getArrayMemberIdentifier(String memberIdentifierKey, JSONObject deltaArrayMember) {
+		String memberIdentifier = "";
+		String[] keys = memberIdentifierKey.split(",");
+		for (String key : keys) {
+			String[] keyPathParts = key.split("\\.");
+			JSONObject relative = deltaArrayMember;
+			for (int i = 0; i < keyPathParts.length - 1; i++) {
+				relative = relative.getJSONObject(keyPathParts[i]);
+			}
+			if (!memberIdentifier.isEmpty()) {
+				memberIdentifier += "|";
+			}
+			memberIdentifier += relative.getString(keyPathParts[keyPathParts.length - 1]);
+		}
+
+		return memberIdentifier;
+	}
+
 	private JSONObject getJSONObjectArrayMember(JSONArray baseArray, String memberIdentifierKey, String memberId) {
 		for (int a = 0; a < baseArray.length(); a++) {
 			JSONObject jsonObject = baseArray.getJSONObject(a);
-			if (memberId.equals(jsonObject.getString(memberIdentifierKey))) {
+			if (memberId.equals(getArrayMemberIdentifier(memberIdentifierKey, jsonObject))) {
 				return jsonObject;
 			}
 		}
