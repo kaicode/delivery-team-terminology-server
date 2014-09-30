@@ -1,0 +1,28 @@
+{"_id": "540f65722ae8860193e22448",
+	"conceptId": "431371001",
+	"active": false,
+	"descriptions": [
+		{
+			"descriptionId": "3004398014",
+			"term": "Bowman's membrane fold"
+		},
+		{
+			"descriptionId": "a358c2ff-6194-4a7d-85b9-878801bdf4c4",
+			"conceptId": "431371001",
+			"type": {
+				"conceptId": "900000000000013009",
+				"defaultTerm": "Synonym (core metadata concept)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000012004"
+			},
+			"lang": "en",
+			"term": "Folds of Bow-man membrane",
+			"length": 24,
+			"active": true,
+			"effectiveTime": "20100131",
+			"module": "900000000000207008"
+		}
+	]
+}
