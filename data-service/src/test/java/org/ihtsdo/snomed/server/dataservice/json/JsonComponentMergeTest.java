@@ -1,5 +1,6 @@
 package org.ihtsdo.snomed.server.dataservice.json;
 
+import org.ihtsdo.snomed.server.dataservice.util.StreamUtils;
 import org.json.JSONException;
 import org.junit.Before;
 import org.junit.Test;
