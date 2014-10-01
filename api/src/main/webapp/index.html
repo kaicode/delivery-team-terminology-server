@@ -50,6 +50,9 @@
 </div>
 
 <style>
+	.demoStep {
+		border-top: 1px solid black;
+	}
 	.jsonContainer {
 		display: block;
 		width: 80%;
@@ -87,6 +90,9 @@
 				dataMethod = "get";
 			} else if (dataMethod == "post" || dataMethod == "put") {
 				data = $('textarea', demoStep).text().replace("{{lastConceptId}}", lastConceptId);
+			}
+			if (dataMethod != "post") {
+				$jsonContainer.after($("<p>").append($("<a>").attr("href", dataUrl).attr("target", "blank").text(dataUrl)));
 			}
 			log(dataMethod + " to " + dataUrl);
 			$.ajax({
