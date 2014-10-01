@@ -106,8 +106,17 @@ public class ConceptService {
 		// TODO: validateUpdateContent(newConcept)
 		if (!branch.equals(MASTER)) {
 			String conceptDelta = getConceptString(conceptId, branch);
-			String modifiedConceptDelta = jsonComponentMerge.mergeComponent(conceptDelta, conceptUpdates);
-			persistConcept(branch, conceptId, modifiedConceptDelta);
+			if (conceptDelta != null) {
+				conceptDelta = jsonComponentMerge.mergeComponent(conceptDelta, conceptUpdates);
+			} else {
+				// Concept does not exist in branch - check it exists in master
+				if (conceptExists(conceptId, MASTER)) {
+					conceptDelta = conceptUpdates;
+				} else {
+					throw new InvalidOperationException("Can not modify a concept which does not exist.");
+				}
+			}
+			persistConcept(branch, conceptId, conceptDelta);
 			return loadConcept(conceptId, branch);
 		} else {
 			throw new InvalidOperationException("Can not modify the master branch directly.");
@@ -121,6 +130,10 @@ public class ConceptService {
 		try (FileWriter writer = new FileWriter(file)) {
 			writer.write(conceptString);
 		}
+	}
+
+	private boolean conceptExists(String conceptId, String branch) {
+		return new File(conceptStore, getConceptPath(conceptId, branch)).isFile();
 	}
 
 	private String getConceptString(String conceptId, String branch) throws IOException {

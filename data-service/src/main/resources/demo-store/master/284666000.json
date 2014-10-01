@@ -1,0 +1,287 @@
+{"_id": "540f650f2ae8860193df27d9",
+	"isLeafInferred": false, "isLeafStated": false, "fsn": "Trophic life form (organism)",
+	"conceptId": "284666000", "defaultTerm": "Trophic life form (organism)", "definitionStatus": "Primitive",
+	"active": true, "effectiveTime": "20020131", "module": "900000000000207008",
+	"memberships": [
+	{
+		"type": "SIMPLEMAP",
+		"referencedComponentId": "284666000",
+		"refset": {
+			"conceptId": "900000000000497000",
+			"defaultTerm": "CTV3 simple map reference set (foundation metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"otherValue": "Xa2nK",
+		"uuid": "2fdb3fb6-7708-538f-b10a-6205ce70ca52",
+		"active": true,
+		"effectiveTime": "20020131",
+		"module": "900000000000207008"
+	},
+	{
+		"type": "SIMPLEMAP",
+		"referencedComponentId": "284666000",
+		"refset": {
+			"conceptId": "900000000000498005",
+			"defaultTerm": "SNOMED RT identifier simple map (foundation metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"otherValue": "L-0000D",
+		"uuid": "6f2ef7cd-38e4-552d-9059-433ede27247e",
+		"active": true,
+		"effectiveTime": "20020131",
+		"module": "900000000000207008"
+	}
+], "descriptions": [
+	{
+		"descriptionId": "423404010",
+		"conceptId": "284666000",
+		"type": {
+			"conceptId": "900000000000013009",
+			"defaultTerm": "Synonym (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"lang": "en",
+		"term": "Trophic life form",
+		"length": 17,
+		"ics": {
+			"conceptId": "900000000000020002",
+			"defaultTerm": "Only initial character case insensitive (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"langMemberships": [
+			{
+				"descriptionId": "423404010",
+				"refset": {
+					"conceptId": "900000000000508004",
+					"defaultTerm": "Great Britain English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "79c3ebbf-3e1f-532e-8bf3-6e54d2a16b36",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000207008"
+			},
+			{
+				"descriptionId": "423404010",
+				"refset": {
+					"conceptId": "900000000000509007",
+					"defaultTerm": "United States of America English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "972b2709-bee8-5e8a-902e-c99cb411d7d2",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000207008"
+			}
+		],
+		"active": true,
+		"effectiveTime": "20020131",
+		"module": "900000000000207008"
+	},
+	{
+		"descriptionId": "678585018",
+		"conceptId": "284666000",
+		"type": {
+			"conceptId": "900000000000003001",
+			"defaultTerm": "Fully specified name (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"lang": "en",
+		"term": "Trophic life form (organism)",
+		"length": 28,
+		"ics": {
+			"conceptId": "900000000000020002",
+			"defaultTerm": "Only initial character case insensitive (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"langMemberships": [
+			{
+				"descriptionId": "678585018",
+				"refset": {
+					"conceptId": "900000000000509007",
+					"defaultTerm": "United States of America English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "5d628c56-51b2-5fbd-b920-8ce255d40012",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000207008"
+			},
+			{
+				"descriptionId": "678585018",
+				"refset": {
+					"conceptId": "900000000000508004",
+					"defaultTerm": "Great Britain English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "c4b06adf-dec7-58df-b5e9-68ffa068d0c9",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000207008"
+			}
+		],
+		"active": true,
+		"effectiveTime": "20020131",
+		"module": "900000000000207008"
+	}
+], "relationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "4748007",
+			"defaultTerm": "Living organism (organism)",
+			"definitionStatus": "Primitive",
+			"active": false,
+			"effectiveTime": "20040731",
+			"module": "900000000000207008"
+		},
+		"sourceId": "284666000",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": false,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	},
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "410607006",
+			"defaultTerm": "Organism (organism)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20040731",
+			"module": "900000000000207008"
+		},
+		"sourceId": "284666000",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "statedRelationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "410607006",
+			"defaultTerm": "Organism (organism)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20040731",
+			"module": "900000000000207008"
+		},
+		"sourceId": "284666000",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000010007",
+			"defaultTerm": "Stated relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20080731",
+		"module": "900000000000207008"
+	}
+]}

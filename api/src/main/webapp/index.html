@@ -15,6 +15,25 @@
 </div>
 
 <div class="demoStep">
+	<h4>Load concept children from master branch "Organism (organism)"</h4>
+	<div class="jsonContainer" data-url="/api/concepts/master/410607006/children"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Deactivate concept on authoring branch "Trophic life form (organism)"</h4>
+	<textarea>{
+		"active": false
+}</textarea>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/284666000" data-method="put"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Load concept children from authoring branch "Organism (organism)" shows deactived child</h4>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/410607006/children"></div>
+</div>
+
+
+<div class="demoStep">
 	<h4>Load concept from master branch "Folds of Bowman's membrane (disorder)"</h4>
 	<div class="jsonContainer" data-url="/api/concepts/master/431371001"></div>
 </div>
