@@ -21,21 +21,26 @@ import java.util.UUID;
 public class ConceptService {
 
 	public static final String MASTER = "master";
+	public static final String IS_A_SCTID = "116680003";
 
 	private final File conceptStore;
 	private final JsonComponentMerge jsonComponentMerge;
-	private final Set<String> conceptToChildSummaryAttributeMapping;
+	private final Set<String> childSummaryAttributes;
+	private final Set<String> childSummaryUpdateAttributes;
 
 	public ConceptService(String conceptStorePath) {
 		conceptStore = new File(conceptStorePath);
 
 		jsonComponentMerge = new JsonComponentMerge();
 
-		conceptToChildSummaryAttributeMapping = new HashSet<>();
-		conceptToChildSummaryAttributeMapping.add("defaultTerm");
-		conceptToChildSummaryAttributeMapping.add("definitionStatus");
-		conceptToChildSummaryAttributeMapping.add("active");
-		conceptToChildSummaryAttributeMapping.add("module");
+		childSummaryUpdateAttributes = new HashSet<>();
+		childSummaryUpdateAttributes.add("defaultTerm");
+		childSummaryUpdateAttributes.add("definitionStatus");
+		childSummaryUpdateAttributes.add("active");
+		childSummaryUpdateAttributes.add("module");
+
+		childSummaryAttributes = new HashSet<>(childSummaryUpdateAttributes);
+		childSummaryAttributes.add("conceptId");
 	}
 
 	public void init() throws IOException, URISyntaxException {
@@ -67,23 +72,34 @@ public class ConceptService {
 
 		if (!branch.equals(MASTER)) {
 
-			// Merge in branch changes. Active
-			JSONArray conceptSummaries = new JSONArray(conceptChildren);
-			for (int a = 0; a < conceptSummaries.length(); a++) {
-				JSONObject childConceptSummary = conceptSummaries.getJSONObject(a);
-				String childConceptSummaryId = childConceptSummary.getString("conceptId");
-				String childConceptString = getConceptString(childConceptSummaryId, branch);
-				if (childConceptString != null) {
-					// This concept is modified in this branch. Let's apply any relevant changes.
-					JSONObject childConcept = new JSONObject(childConceptString);
-					for (String attributeName : conceptToChildSummaryAttributeMapping) {
-						if (childConcept.has(attributeName)) {
-							childConceptSummary.put(attributeName, childConcept.get(attributeName));
+			String branchConceptChildren = getConceptChildrenString(conceptId, branch);
+			if (branchConceptChildren != null) {
+				if (conceptChildren != null) {
+					conceptChildren = jsonComponentMerge.mergeChildList(conceptChildren, branchConceptChildren);
+				} else {
+					conceptChildren = branchConceptChildren;
+				}
+			}
+
+			if (conceptChildren != null) {
+				// Merge in concept changes in branch
+				JSONArray conceptSummaries = new JSONArray(conceptChildren);
+				for (int a = 0; a < conceptSummaries.length(); a++) {
+					JSONObject childConceptSummary = conceptSummaries.getJSONObject(a);
+					String childConceptSummaryId = childConceptSummary.getString("conceptId");
+					String childConceptString = getConceptString(childConceptSummaryId, branch);
+					if (childConceptString != null) {
+						// This concept is modified in this branch. Let's apply any relevant changes.
+						JSONObject childConcept = new JSONObject(childConceptString);
+						for (String attributeName : childSummaryUpdateAttributes) {
+							if (childConcept.has(attributeName)) {
+								childConceptSummary.put(attributeName, childConcept.get(attributeName));
+							}
 						}
 					}
 				}
+				conceptChildren = conceptSummaries.toString();
 			}
-			conceptChildren = conceptSummaries.toString();
 		}
 		return conceptChildren;
 	}
@@ -117,18 +133,74 @@ public class ConceptService {
 				}
 			}
 			persistConcept(branch, conceptId, conceptDelta);
-			return loadConcept(conceptId, branch);
+
+			String fullConcept = loadConcept(conceptId, branch);
+			updateParentChildLists(conceptId, conceptUpdates, fullConcept, branch);
+			return fullConcept;
 		} else {
 			throw new InvalidOperationException("Can not modify the master branch directly.");
 		}
 	}
 
+	private void updateParentChildLists(String conceptId, String conceptUpdatesString, String fullConceptString, String branch) throws InvalidOperationException, IOException {
+		JSONObject conceptDelta = new JSONObject(conceptUpdatesString);
+		if (conceptDelta.has("statedRelationships")) {
+			JSONArray statedRelationships = conceptDelta.getJSONArray("statedRelationships");
+			for (int a = 0; a < statedRelationships.length(); a++) {
+				JSONObject statedRelationship = statedRelationships.getJSONObject(a);
+				if (IS_A_SCTID.equals(statedRelationship.getJSONObject("type").getString("conceptId"))) {
+					String targetConceptId = statedRelationship.getJSONObject("target").getString("conceptId");
+					if (!conceptId.equals(targetConceptId)) {
+						String parentConceptChildrenDeltaString = getConceptChildrenString(targetConceptId, branch);
+						JSONArray parentConceptChildren;
+						boolean childOfParentFound = false;
+						if (parentConceptChildrenDeltaString != null) {
+							parentConceptChildren = new JSONArray(parentConceptChildrenDeltaString);
+							for (int i = 0; !childOfParentFound && i < parentConceptChildren.length(); i++) {
+								JSONObject parentConceptChild = parentConceptChildren.getJSONObject(i);
+								if (parentConceptChild.getString("conceptId").equals("conceptId")) {
+									childOfParentFound = true;
+								}
+							}
+						} else {
+							parentConceptChildren = new JSONArray();
+						}
+						if (!childOfParentFound) {
+							// Add child
+							JSONObject newChild = new JSONObject();
+							copyAttributes(new JSONObject(fullConceptString), newChild, childSummaryAttributes);
+							parentConceptChildren.put(newChild);
+							persistConceptChildren(branch, targetConceptId, parentConceptChildren.toString());
+						}
+					} else {
+						throw new InvalidOperationException("You can not relate a concept to itself.");
+					}
+				}
+			}
+		}
+	}
+
+	private void copyAttributes(JSONObject source, JSONObject target, Set<String> attributes) {
+		for (String attribute : attributes) {
+			if (source.has(attribute)) {
+				target.put(attribute, source.get(attribute));
+			}
+		}
+	}
+
 	private void persistConcept(String branch, String conceptId, String conceptString) throws IOException {
-		String conceptPath = getConceptPath(conceptId, branch);
-		File file = new File(conceptStore, conceptPath);
+		writeFile(conceptString, getConceptPath(conceptId, branch));
+	}
+
+	private void persistConceptChildren(String branch, String conceptId, String conceptChildrenString) throws IOException {
+		writeFile(conceptChildrenString, getConceptChildrenPath(conceptId, branch));
+	}
+
+	private void writeFile(String contents, String path) throws IOException {
+		File file = new File(conceptStore, path);
 		file.createNewFile();
 		try (FileWriter writer = new FileWriter(file)) {
-			writer.write(conceptString);
+			writer.write(contents);
 		}
 	}
 
@@ -141,10 +213,15 @@ public class ConceptService {
 	}
 
 	private String getConceptChildrenString(String conceptId, String branch) throws IOException {
-		return readFileOrNull(new File(conceptStore, getConceptPath(conceptId, branch, "-children")));
+		return readFileOrNull(new File(conceptStore, getConceptChildrenPath(conceptId, branch)));
 	}
+
 	private String getConceptPath(String conceptId, String branch) {
 		return getConceptPath(conceptId, branch, "");
+	}
+
+	private String getConceptChildrenPath(String conceptId, String branch) {
+		return getConceptPath(conceptId, branch, "-children");
 	}
 
 	private String getConceptPath(String conceptId, String branch, String postfix) {

@@ -39,6 +39,7 @@ public class DemoStorePopulator {
 							File newFile = new File(conceptStore, name.substring(DEMO_STORE.length() + 1));
 							newFile.mkdirs();
 							Files.copy(zip, newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+							newFile.deleteOnExit();
 						}
 					}
 				}
@@ -60,6 +61,7 @@ public class DemoStorePopulator {
 			File newFile = new File(conceptStore, relativePath);
 			newFile.mkdirs();
 			Files.copy(getClass().getResourceAsStream("/" + DEMO_STORE + relativePath), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+			newFile.deleteOnExit();
 		}
 	}
 

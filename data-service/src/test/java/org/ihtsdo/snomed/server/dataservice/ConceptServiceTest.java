@@ -97,4 +97,31 @@ public class ConceptServiceTest {
 		JSONAssert.assertEquals(expectedUpdatedBranchConcept, conceptService.loadConcept(conceptId, AUTHORING_TEAM_BRANCH), true);
 	}
 
+	@Test
+	public void testAddParentUpdatesParentsChildList() throws IOException, JsonComponentMergeException, InvalidOperationException {
+		String originalParentChildren = conceptService.loadConceptChildren("105590001", AUTHORING_TEAM_BRANCH);
+
+		conceptService.updateConcept("410980008", AUTHORING_TEAM_BRANCH, "{" +
+				"'statedRelationships': [" +
+				"	{" +
+				"		'module': '900000000000207008'," +
+				"		'target': {" +
+				"			'conceptId': '105590001'" +
+				"		}," +
+				"		'groupId': 0," +
+				"		'type': {" +
+				"			'conceptId': '116680003'" +
+				"		}," +
+				"		'charType': {" +
+				"			'conceptId': '900000000000010007'" +
+				"		}" +
+				"	}" +
+				"]" +
+				"}".replace("'", "\""));
+
+		String updatedParentChildren = conceptService.loadConceptChildren("105590001", AUTHORING_TEAM_BRANCH);
+
+		Assert.assertNotEquals(originalParentChildren, updatedParentChildren);
+	}
+
 }

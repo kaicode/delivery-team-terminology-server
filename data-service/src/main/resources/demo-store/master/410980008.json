@@ -1,0 +1,255 @@
+{"_id": "540f65712ae8860193e21cdf",
+	"isLeafInferred": false, "isLeafStated": false, "fsn": "Dust allergen (substance)",
+	"conceptId": "410980008", "defaultTerm": "Dust allergen (substance)", "definitionStatus": "Primitive",
+	"active": true, "effectiveTime": "20040731", "module": "900000000000207008",
+	"memberships": [
+	{
+		"type": "SIMPLEMAP",
+		"referencedComponentId": "410980008",
+		"refset": {
+			"conceptId": "900000000000497000",
+			"defaultTerm": "CTV3 simple map reference set (foundation metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"otherValue": "XUbdM",
+		"uuid": "3c83a4ca-b1ed-5691-9c3b-cb3d11e6e85d",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	},
+	{
+		"type": "SIMPLEMAP",
+		"referencedComponentId": "410980008",
+		"refset": {
+			"conceptId": "900000000000498005",
+			"defaultTerm": "SNOMED RT identifier simple map (foundation metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"otherValue": "F-61E36",
+		"uuid": "f723a8b8-d1eb-5afd-a8bd-fbf8bad085e5",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "descriptions": [
+	{
+		"descriptionId": "2466431012",
+		"conceptId": "410980008",
+		"type": {
+			"conceptId": "900000000000003001",
+			"defaultTerm": "Fully specified name (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"lang": "en",
+		"term": "Dust allergen (substance)",
+		"length": 25,
+		"ics": {
+			"conceptId": "900000000000020002",
+			"defaultTerm": "Only initial character case insensitive (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"langMemberships": [
+			{
+				"descriptionId": "2466431012",
+				"refset": {
+					"conceptId": "900000000000509007",
+					"defaultTerm": "United States of America English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "e997145e-3817-5fe0-bc7f-fd204f91fbd8",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			},
+			{
+				"descriptionId": "2466431012",
+				"refset": {
+					"conceptId": "900000000000508004",
+					"defaultTerm": "Great Britain English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "f3cd26a0-6ce0-5a4c-a7b0-4ff837a05b7b",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			}
+		],
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	},
+	{
+		"descriptionId": "2472623010",
+		"conceptId": "410980008",
+		"type": {
+			"conceptId": "900000000000013009",
+			"defaultTerm": "Synonym (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"lang": "en",
+		"term": "Dust allergen",
+		"length": 13,
+		"ics": {
+			"conceptId": "900000000000020002",
+			"defaultTerm": "Only initial character case insensitive (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"langMemberships": [
+			{
+				"descriptionId": "2472623010",
+				"refset": {
+					"conceptId": "900000000000508004",
+					"defaultTerm": "Great Britain English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "3627325a-2c5b-5d37-b17c-e391a6791ed1",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			},
+			{
+				"descriptionId": "2472623010",
+				"refset": {
+					"conceptId": "900000000000509007",
+					"defaultTerm": "United States of America English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "da026356-256a-5b6e-9e89-33183b093f55",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			}
+		],
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "relationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "406455002",
+			"defaultTerm": "Allergen class (substance)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20040131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "410980008",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "statedRelationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "406455002",
+			"defaultTerm": "Allergen class (substance)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20040131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "410980008",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000010007",
+			"defaultTerm": "Stated relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20080731",
+		"module": "900000000000207008"
+	}
+]}

@@ -9,30 +9,16 @@
 <body>
 
 <h1>Terminology Server Demo</h1>
+
+
+<h2>View Concept</h2>
 <div class="demoStep">
 	<h4>Load concept from master branch "SNOMED CT Concept (SNOMED RT+CTV3)"</h4>
 	<div class="jsonContainer" data-url="/api/concepts/master/138875005"></div>
 </div>
 
-<div class="demoStep">
-	<h4>Load concept children from master branch "Organism (organism)"</h4>
-	<div class="jsonContainer" data-url="/api/concepts/master/410607006/children"></div>
-</div>
 
-<div class="demoStep">
-	<h4>Deactivate concept on authoring branch "Trophic life form (organism)"</h4>
-	<textarea>{
-		"active": false
-}</textarea>
-	<div class="jsonContainer" data-url="/api/concepts/authoring-team/284666000" data-method="put"></div>
-</div>
-
-<div class="demoStep">
-	<h4>Load concept children from authoring branch "Organism (organism)" shows deactived child</h4>
-	<div class="jsonContainer" data-url="/api/concepts/authoring-team/410607006/children"></div>
-</div>
-
-
+<h2>View Concept on Different Branches</h2>
 <div class="demoStep">
 	<h4>Load concept from master branch "Folds of Bowman's membrane (disorder)"</h4>
 	<div class="jsonContainer" data-url="/api/concepts/master/431371001"></div>
@@ -43,6 +29,8 @@
 	<div class="jsonContainer" data-url="/api/concepts/authoring-team/431371001"></div>
 </div>
 
+
+<h2>Create and Update Concept</h2>
 <div class="demoStep">
 	<h4>Create concept in authoring branch "Macklemore membrane (body structure)"</h4>
 	<textarea>{
@@ -68,9 +56,64 @@
 	<div class="jsonContainer" data-url="/api/concepts/authoring-team/{{lastConceptId}}" data-method="put"></div>
 </div>
 
+
+<h2>View Child List, Update a Child and Reload</h2>
+<div class="demoStep">
+	<h4>Load concept children from master branch "Organism (organism)"</h4>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/410607006/children"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Deactivate concept on authoring branch "Trophic life form (organism)"</h4>
+	<textarea>{
+		"active": false
+		}</textarea>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/284666000" data-method="put"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Load concept children from authoring branch "Organism (organism)" shows deactived child</h4>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/410607006/children"></div>
+</div>
+
+
+<h2>View Child List, Add a Child and Reload</h2>
+<div class="demoStep">
+	<h4>Load concept children from authoring branch "Substance (substance)"</h4>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/105590001/children"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Add concept "Substance (substance)" as a parent of "Dust allergen (substance)" on authoring branch</h4>
+	<textarea>{
+	"statedRelationships": [
+		{
+			"module": "900000000000207008",
+			"target": {
+				"conceptId": "105590001"
+			},
+			"groupId": 0,
+			"type": {
+				"conceptId": "116680003"
+			},
+			"charType": {
+				"conceptId": "900000000000010007"
+			}
+		}
+	]
+}</textarea>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/410980008" data-method="put"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Load concept children from authoring branch "Substance (substance)" shows new child</h4>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/105590001/children"></div>
+</div>
+
+
 <style>
 	.demoStep {
-		border-top: 1px solid black;
+		border-bottom: 1px solid black;
 	}
 	.jsonContainer {
 		display: block;
@@ -78,6 +121,7 @@
 		height: 300px;
 		border: 1px solid grey;
 		overflow: scroll;
+		margin-bottom: 20px;
 	}
 	.syntaxhighlighter .toolbar {
 		display: none;
@@ -85,6 +129,9 @@
 	textarea {
 		width: 500px;
 		height: 160px;
+	}
+	.httpMethod {
+		margin-right: 10px;
 	}
 </style>
 <script type='text/javascript' src='lib/syntax-highlighter/js/shCore.js' ></script>
@@ -111,7 +158,7 @@
 				data = $('textarea', demoStep).text().replace("{{lastConceptId}}", lastConceptId);
 			}
 			if (dataMethod != "post") {
-				$jsonContainer.after($("<p>").append($("<a>").attr("href", dataUrl).attr("target", "blank").text(dataUrl)));
+				$jsonContainer.before($("<p>").append($("<span>").html(dataMethod.toUpperCase() + "&nbsp;")).append($("<a>").attr("href", dataUrl).attr("target", "blank").text(dataUrl)));
 			}
 			log(dataMethod + " to " + dataUrl);
 			$.ajax({

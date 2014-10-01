@@ -27,6 +27,15 @@ public class JsonComponentMerge {
 		return merged.toString();
 	}
 
+	public String mergeChildList(String baseConceptChildren, String deltaConceptChildren) throws JsonComponentMergeException {
+		JSONArray base = new JSONArray(baseConceptChildren);
+		JSONArray delta = new JSONArray(deltaConceptChildren);
+
+		JSONArray merged = mergeArrays(base, delta, "Concept child list", "conceptId");
+
+		return merged.toString();
+	}
+
 	private JSONObject mergeObjects(JSONObject base, JSONObject delta) throws JsonComponentMergeException {
 		Set<String> keys = delta.keySet();
 		for (String key : keys) {
@@ -39,28 +48,7 @@ public class JsonComponentMerge {
 					} else if (deltaAttribute instanceof JSONArray) {
 						JSONArray baseArray = (JSONArray) baseAttribute;
 						JSONArray deltaArray = (JSONArray) deltaAttribute;
-						String memberIdentifierKey = null;
-						for (int a = 0; a < deltaArray.length(); a++) {
-							Object deltaArrayMemberObject = deltaArray.get(a);
-							if (deltaArrayMemberObject instanceof JSONObject) {
-								if (memberIdentifierKey == null) {
-									memberIdentifierKey = arrayMemberIdentifierKey.get(key);
-									if (memberIdentifierKey == null) {
-										throw new JsonComponentMergeException("No array member identifier key available for array, arrayName:" + key);
-									}
-								}
-								JSONObject deltaArrayMember = (JSONObject) deltaArrayMemberObject;
-								String memberId = getArrayMemberIdentifier(memberIdentifierKey, deltaArrayMember);
-								JSONObject baseArrayMember = getJSONObjectArrayMember(baseArray, memberIdentifierKey, memberId);
-								if (baseArrayMember != null) {
-									mergeObjects(baseArrayMember, deltaArrayMember);
-								} else {
-									baseArray.put(deltaArrayMember);
-								}
-							} else {
-								throw new JsonComponentMergeException("Merging of simple array members not yet implemented, arrayName" + key);
-							}
-						}
+						mergeArrays(baseArray, deltaArray, key, arrayMemberIdentifierKey.get(key));
 					} else {
 						base.put(key, deltaAttribute);
 					}
@@ -72,6 +60,28 @@ public class JsonComponentMerge {
 			}
 		}
 		return base;
+	}
+
+	private JSONArray mergeArrays(JSONArray baseArray, JSONArray deltaArray, String arrayName, String memberIdentifierKey) throws JsonComponentMergeException {
+		for (int a = 0; a < deltaArray.length(); a++) {
+			Object deltaArrayMemberObject = deltaArray.get(a);
+			if (deltaArrayMemberObject instanceof JSONObject) {
+				if (memberIdentifierKey == null) {
+					throw new JsonComponentMergeException("No array member identifier key available for array, arrayName:" + arrayName);
+				}
+				JSONObject deltaArrayMember = (JSONObject) deltaArrayMemberObject;
+				String memberId = getArrayMemberIdentifier(memberIdentifierKey, deltaArrayMember);
+				JSONObject baseArrayMember = getJSONObjectArrayMember(baseArray, memberIdentifierKey, memberId);
+				if (baseArrayMember != null) {
+					mergeObjects(baseArrayMember, deltaArrayMember);
+				} else {
+					baseArray.put(deltaArrayMember);
+				}
+			} else {
+				throw new JsonComponentMergeException("Merging of simple array members not yet implemented, arrayName" + arrayName);
+			}
+		}
+		return baseArray;
 	}
 
 	private String getArrayMemberIdentifier(String memberIdentifierKey, JSONObject deltaArrayMember) {
@@ -105,5 +115,4 @@ public class JsonComponentMerge {
 	private Object getAttributeOrNull(JSONObject jsonObject, String key) {
 		return jsonObject.has(key) ? jsonObject.get(key) : null;
 	}
-
 }

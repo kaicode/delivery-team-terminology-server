@@ -1,0 +1,152 @@
+[
+	{
+		"_id": "540f65082ae8860193dee0b6",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "116273005",
+		"defaultTerm": "Dietary substance (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f650a2ae8860193def4f0",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "438951008",
+		"defaultTerm": "Substance categorized by hazard characteristics (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f650f2ae8860193df2755",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "21847005",
+		"defaultTerm": "Oil (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65522ae8860193e1350a",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "115668003",
+		"defaultTerm": "Biological substance (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65522ae8860193e13540",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "115669006",
+		"defaultTerm": "Substance categorized by physical state (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65602ae8860193e198df",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "91720002",
+		"defaultTerm": "Body substance (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65622ae8860193e1a3ab",
+		"isLeafInferred": true,
+		"isLeafStated": true,
+		"conceptId": "420056007",
+		"defaultTerm": "Aromatherapy agent (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f656c2ae8860193e1ea74",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "441900009",
+		"defaultTerm": "Chemical (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65722ae8860193e22060",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "410942007",
+		"defaultTerm": "Drug or medicament (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65932ae8860193e328b2",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "61321005",
+		"defaultTerm": "Cancer-related substance (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65a92ae8860193e3dcca",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "312417001",
+		"defaultTerm": "Substance of abuse (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65a92ae8860193e3dcd6",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "312412007",
+		"defaultTerm": "Substance categorized functionally (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65a92ae8860193e3dcdb",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "312413002",
+		"defaultTerm": "Substance categorized structurally (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65a92ae8860193e3de24",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "406455002",
+		"defaultTerm": "Allergen class (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65ad2ae8860193e4046d",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "260769002",
+		"defaultTerm": "Material (substance)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	}
+]
