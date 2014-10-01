@@ -1,25 +1,34 @@
 package org.ihtsdo.snomed.server.dataservice;
 
+import org.ihtsdo.snomed.server.dataservice.exception.InvalidOperationException;
 import org.ihtsdo.snomed.server.dataservice.json.JsonComponentMerge;
 import org.ihtsdo.snomed.server.dataservice.json.JsonComponentMergeException;
 import org.ihtsdo.snomed.server.dataservice.json.OrderedConceptJsonObject;
+import org.ihtsdo.snomed.server.dataservice.util.DemoStorePopulator;
 import org.ihtsdo.snomed.server.dataservice.util.StreamUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class ConceptService {
 
 	public static final String MASTER = "master";
 
+	private final File conceptStore;
 	private final JsonComponentMerge jsonComponentMerge;
 	private final Set<String> conceptToChildSummaryAttributeMapping;
 
-	public ConceptService() {
+	public ConceptService(String conceptStorePath) {
+		conceptStore = new File(conceptStorePath);
+
 		jsonComponentMerge = new JsonComponentMerge();
 
 		conceptToChildSummaryAttributeMapping = new HashSet<>();
@@ -29,13 +38,21 @@ public class ConceptService {
 		conceptToChildSummaryAttributeMapping.add("module");
 	}
 
+	public void init() throws IOException, URISyntaxException {
+		new DemoStorePopulator(conceptStore).populateStoreWithDemoProduct();
+	}
+
 	public String loadConcept(String conceptId, String branch) throws IOException, JsonComponentMergeException {
 		String concept = getConceptString(conceptId, MASTER);
 
 		if (!branch.equals(MASTER)) {
-			String branchDelta = getConceptString(conceptId, getBranchPath(branch));
+			String branchDelta = getConceptString(conceptId, branch);
 			if (branchDelta != null) {
-				concept = jsonComponentMerge.mergeComponent(concept, branchDelta);
+				if (concept != null) {
+					concept = jsonComponentMerge.mergeComponent(concept, branchDelta);
+				} else {
+					concept = branchDelta;
+				}
 			}
 		} else {
 			// Order attributes of non-merged concept
@@ -49,14 +66,13 @@ public class ConceptService {
 		String conceptChildren = getConceptChildrenString(conceptId, MASTER);
 
 		if (!branch.equals(MASTER)) {
-			String branchPath = getBranchPath(branch);
 
 			// Merge in branch changes. Active
 			JSONArray conceptSummaries = new JSONArray(conceptChildren);
 			for (int a = 0; a < conceptSummaries.length(); a++) {
 				JSONObject childConceptSummary = conceptSummaries.getJSONObject(a);
 				String childConceptSummaryId = childConceptSummary.getString("conceptId");
-				String childConceptString = getConceptString(childConceptSummaryId, branchPath);
+				String childConceptString = getConceptString(childConceptSummaryId, branch);
 				if (childConceptString != null) {
 					// This concept is modified in this branch. Let's apply any relevant changes.
 					JSONObject childConcept = new JSONObject(childConceptString);
@@ -72,23 +88,50 @@ public class ConceptService {
 		return conceptChildren;
 	}
 
-	private String getBranchPath(String branch) {
-		return "branch-deltas/" + branch;
+	public String createConcept(String newConcept, String branch) throws InvalidOperationException, IOException {
+		// TODO: validateConceptContent(newConcept)
+		if (!branch.equals(MASTER)) {
+			JSONObject concept = new JSONObject(newConcept);
+			String conceptId = UUID.randomUUID().toString();
+			concept.put("conceptId", conceptId); // Set new UUID conceptId
+			String conceptPath = getConceptPath(conceptId, branch);
+			String conceptString = concept.toString();
+			File file = new File(conceptStore, conceptPath);
+			file.createNewFile();
+			try (FileWriter writer = new FileWriter(file)) {
+				writer.write(conceptString);
+			}
+			return conceptString;
+		} else {
+			throw new InvalidOperationException("Can not modify the master branch directly.");
+		}
 	}
 
-	private String getConceptString(String conceptId, String branchPath) throws IOException {
-		return readStreamOrNull(getClass().getResourceAsStream("/demo-store/" + branchPath + "/" + conceptId + ".json"));
+	private String getConceptString(String conceptId, String branch) throws IOException {
+		return readFileOrNull(new File(conceptStore, getConceptPath(conceptId, branch)));
 	}
 
-	private String getConceptChildrenString(String conceptId, String branchPath) throws IOException {
-		return readStreamOrNull(getClass().getResourceAsStream("/demo-store/" + branchPath + "/" + conceptId + "-children.json"));
+	private String getConceptChildrenString(String conceptId, String branch) throws IOException {
+		return readFileOrNull(new File(conceptStore, getConceptPath(conceptId, branch, "-children")));
 	}
 
-	private String readStreamOrNull(InputStream inputStream) throws IOException {
-		if (inputStream != null) {
-			return StreamUtils.readStream(inputStream);
+	private String getConceptPath(String conceptId, String branch) {
+		return getConceptPath(conceptId, branch, "");
+	}
+	private String getConceptPath(String conceptId, String branch, String postfix) {
+		String branchPath = branch;
+		if (!branch.equals(MASTER)) {
+			branchPath = "branch-deltas/" + branch;
+		}
+		return branchPath + "/" + conceptId + postfix + ".json";
+	}
+
+	private String readFileOrNull(File file) throws IOException {
+		if (file.exists()) {
+			return StreamUtils.readStream(new FileInputStream(file));
 		} else {
 			return null;
 		}
 	}
+
 }

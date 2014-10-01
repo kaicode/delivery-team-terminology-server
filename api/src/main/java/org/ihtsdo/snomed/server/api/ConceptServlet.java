@@ -1,14 +1,18 @@
 package org.ihtsdo.snomed.server.api;
 
 import org.ihtsdo.snomed.server.dataservice.ConceptService;
+import org.ihtsdo.snomed.server.dataservice.exception.InvalidOperationException;
 import org.ihtsdo.snomed.server.dataservice.json.JsonComponentMergeException;
+import org.ihtsdo.snomed.server.dataservice.util.StreamUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @WebServlet("/api/concepts/*")
 public class ConceptServlet extends HttpServlet {
@@ -18,10 +22,20 @@ public class ConceptServlet extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		conceptService = new ConceptService();
+		conceptService = new ConceptService("/tmp/terminology-server-store");
+		try {
+			conceptService.init();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
+	/**
+	 * GET - View concept of concept child list
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pathInfo = request.getPathInfo();
 		if (pathInfo != null && !pathInfo.isEmpty()) {
@@ -47,6 +61,31 @@ public class ConceptServlet extends HttpServlet {
 				} catch (JsonComponentMergeException e) {
 					e.printStackTrace(); // todo: logging
 					response.setStatus(500);
+				}
+			}
+		}
+	}
+
+	@Override
+	/**
+	 * POST - Create concept
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pathInfo = request.getPathInfo();
+		if (pathInfo != null && !pathInfo.isEmpty()) {
+			String[] pathParts = pathInfo.split("/");
+			if (pathParts.length == 2) {
+				String branch = pathParts[1];
+
+				ServletInputStream inputStream = request.getInputStream();
+				String newConcept = StreamUtils.readStream(inputStream);
+				try {
+					String concept = conceptService.createConcept(newConcept, branch);
+					response.setContentType(APPLICATION_JSON);
+					response.getWriter().print(concept);
+				} catch (InvalidOperationException e) {
+					e.printStackTrace(); // todo: logging
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 				}
 			}
 		}

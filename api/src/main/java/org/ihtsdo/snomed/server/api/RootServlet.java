@@ -12,6 +12,6 @@ public class RootServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write("Welcome to the Terminology Server.");
+		response.getWriter().write("Welcome to the Terminology Server API.");
 	}
 }
