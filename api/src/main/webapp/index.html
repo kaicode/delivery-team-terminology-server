@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="lib/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="lib/syntax-highlighter/css/shCore.css" />
+	<link rel="stylesheet" href="lib/syntax-highlighter/css/shThemeDefault.css" />
+</head>
+<body>
+
+<h1>Terminology Server Demo</h1>
+<div class="demoStep">
+	<h4>Load concept from master branch "SNOMED CT Concept (SNOMED RT+CTV3)"</h4>
+	<div class="jsonContainer" data-url="/api/concepts/master/138875005"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Load concept from master branch "Folds of Bowman's membrane (disorder)"</h4>
+	<div class="jsonContainer" data-url="/api/concepts/master/431371001"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Load concept from authoring branch "Folds of Bowman's membrane (disorder)"</h4>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/431371001"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Create concept in authoring branch "Macklemore membrane (body structure)"</h4>
+	<textarea>{
+		"effectiveTime": "20080731",
+		"active": true,
+		"module": "900000000000207008",
+		"definitionStatus": "Fully defined",
+		"fsn": "Macklemore membrane (body structure)",
+		"defaultTerm": "Macklemore membrane (body structure)",
+		"isLeafInferred": true,
+		"isLeafStated": true,
+		"descriptions": [], "relationships": [], "statedRelationships": []
+		}</textarea>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team" data-method="post"></div>
+</div>
+
+<style>
+	.jsonContainer {
+		display: block;
+		width: 100%;
+		height: 300px;
+		border: 1px solid grey;
+		overflow: scroll;
+	}
+	.syntaxhighlighter .toolbar {
+		display: none;
+	}
+</style>
+<script type='text/javascript' src='lib/syntax-highlighter/js/shCore.js' ></script>
+<script type='text/javascript' src='lib/syntax-highlighter/js/shBrushJScript.js' ></script>
+<script type='text/javascript' src='lib/syntax-highlighter/js/shBrushXml.js' ></script>
+<script>
+	function log(string) {
+		console.log(string);
+	}
+
+	$(document).ready(function() {
+		var $demoSteps = $('.demoStep');
+		var step = 0;
+		var interval = setInterval(function () {
+			if ($demoSteps.size() > step) {
+				log('step ' + step);
+				var demoStep = $demoSteps[step++];
+				$('.jsonContainer', demoStep).each(function (index, jsonContainer) {
+					var $jsonContainer = $(this);
+					var dataUrl = $jsonContainer.attr('data-url');
+					var dataMethod = $jsonContainer.attr('data-method');
+					var data = null;
+					if (dataMethod == null) {
+						dataMethod = "get";
+					} else if (dataMethod == "post") {
+						data = $('textarea', demoStep).text();
+					}
+					$.ajax({
+						url: dataUrl,
+						type: dataMethod,
+						data: data,
+						success: function (response, textStatus, jqXHR) {
+							var json = JSON.stringify(response, null, " ")
+							$jsonContainer.html('<script type=\"syntaxhighlighter\" class=\"brush: js\">\<![CDATA[' + json + ']]><\/script>');
+							SyntaxHighlighter.highlight();
+						}
+					})
+				})
+			} else {
+				log('steps finished');
+				clearInterval(interval);
+			}
+		}, 0);
+	})
+</script>
+</body>
+</html>
