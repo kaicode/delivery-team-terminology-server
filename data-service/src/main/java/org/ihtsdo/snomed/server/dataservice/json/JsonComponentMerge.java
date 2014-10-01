@@ -19,7 +19,7 @@ public class JsonComponentMerge {
 	}
 
 	public String mergeConcept(String baseConcept, String deltaConcept) throws JsonComponentMergeException {
-		JSONObject base = new JSONObject(baseConcept);
+		JSONObject base = new OrderedConceptJsonObject(baseConcept);
 		JSONObject delta = new JSONObject(deltaConcept);
 
 		JSONObject merged = mergeObjects(base, delta);
