@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebServlet("/api/concepts/*")
 public class ConceptServlet extends HttpServlet {
 
+	public static final String APPLICATION_JSON = "application/json";
 	private ConceptService conceptService;
 
 	@Override
@@ -30,6 +31,7 @@ public class ConceptServlet extends HttpServlet {
 				String conceptId = pathParts[2];
 				try {
 					String concept = conceptService.loadConcept(conceptId, branch);
+					response.setContentType(APPLICATION_JSON);
 					response.getWriter().print(concept);
 				} catch (JsonComponentMergeException e) {
 					e.printStackTrace(); // todo: logging
@@ -40,6 +42,7 @@ public class ConceptServlet extends HttpServlet {
 				String conceptId = pathParts[2];
 				try {
 					String conceptChildren = conceptService.loadConceptChildren(conceptId, branch);
+					response.setContentType(APPLICATION_JSON);
 					response.getWriter().print(conceptChildren);
 				} catch (JsonComponentMergeException e) {
 					e.printStackTrace(); // todo: logging
