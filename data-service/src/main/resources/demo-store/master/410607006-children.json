@@ -1,0 +1,72 @@
+[
+	{
+		"_id": "540f650f2ae8860193df27d9",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "284666000",
+		"defaultTerm": "Trophic life form (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f652b2ae8860193e0088d",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "264395009",
+		"defaultTerm": "Microorganism (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65312ae8860193e0367e",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "426785004",
+		"defaultTerm": "Kingdom Chromista (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65512ae8860193e128b5",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "115630000",
+		"defaultTerm": "Renotrophic organism (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65a42ae8860193e3b140",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "387961004",
+		"defaultTerm": "Kingdom Animalia (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65b92ae8860193e46c48",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "31006001",
+		"defaultTerm": "Kingdom Plantae (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	},
+	{
+		"_id": "540f65c42ae8860193e4c1ad",
+		"isLeafInferred": false,
+		"isLeafStated": false,
+		"conceptId": "278306005",
+		"defaultTerm": "Life-cycle form (organism)",
+		"definitionStatus": "Primitive",
+		"active": true,
+		"module": "900000000000207008"
+	}
+]

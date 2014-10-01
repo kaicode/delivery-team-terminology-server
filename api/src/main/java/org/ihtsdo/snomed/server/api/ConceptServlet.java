@@ -28,13 +28,23 @@ public class ConceptServlet extends HttpServlet {
 			if (pathParts.length == 3) {
 				String branch = pathParts[1];
 				String conceptId = pathParts[2];
-				String concept = null;
 				try {
-					concept = conceptService.loadConcept(conceptId, branch);
+					String concept = conceptService.loadConcept(conceptId, branch);
+					response.getWriter().print(concept);
 				} catch (JsonComponentMergeException e) {
-					e.printStackTrace();
+					e.printStackTrace(); // todo: logging
+					response.setStatus(500);
 				}
-				response.getWriter().print(concept);
+			} else if (pathParts.length == 4 && pathParts[3].equals("children")) {
+				String branch = pathParts[1];
+				String conceptId = pathParts[2];
+				try {
+					String conceptChildren = conceptService.loadConceptChildren(conceptId, branch);
+					response.getWriter().print(conceptChildren);
+				} catch (JsonComponentMergeException e) {
+					e.printStackTrace(); // todo: logging
+					response.setStatus(500);
+				}
 			}
 		}
 	}

@@ -25,7 +25,7 @@ public class JsonComponentMergeTest {
 		String expectedMergedConcept = StreamUtils.readStream(getClass().getResourceAsStream("431371001-merged.json"));
 
 		long start = new Date().getTime();
-		String actualMerged = jsonComponentMerge.mergeConcept(releaseConcept, deltaConcept);
+		String actualMerged = jsonComponentMerge.mergeComponent(releaseConcept, deltaConcept);
 		long millisTaken = new Date().getTime() - start;
 		System.out.println("Merge took " + millisTaken + " milliseconds.");
 

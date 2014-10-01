@@ -1,0 +1,251 @@
+{"_id": "540f65732ae8860193e22823", "memberships": [
+	{
+		"type": "SIMPLEMAP",
+		"referencedComponentId": "410607006",
+		"refset": {
+			"conceptId": "900000000000497000",
+			"defaultTerm": "CTV3 simple map reference set (foundation metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"otherValue": "XUcAL",
+		"uuid": "d5c280eb-ae7f-590f-9210-392e487385bf",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	},
+	{
+		"type": "SIMPLEMAP",
+		"referencedComponentId": "410607006",
+		"refset": {
+			"conceptId": "900000000000498005",
+			"defaultTerm": "SNOMED RT identifier simple map (foundation metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"otherValue": "R-005B2",
+		"uuid": "3fb7d108-3fae-5aca-bbb6-7d0e0a1a6204",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "descriptions": [
+	{
+		"descriptionId": "2466059019",
+		"conceptId": "410607006",
+		"type": {
+			"conceptId": "900000000000003001",
+			"defaultTerm": "Fully specified name (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"lang": "en",
+		"term": "Organism (organism)",
+		"length": 19,
+		"ics": {
+			"conceptId": "900000000000020002",
+			"defaultTerm": "Only initial character case insensitive (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"langMemberships": [
+			{
+				"descriptionId": "2466059019",
+				"refset": {
+					"conceptId": "900000000000508004",
+					"defaultTerm": "Great Britain English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "208dc6f1-4863-5941-8899-088b992405f8",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			},
+			{
+				"descriptionId": "2466059019",
+				"refset": {
+					"conceptId": "900000000000509007",
+					"defaultTerm": "United States of America English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "af14b972-27bd-5004-9e66-f095682c5aec",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			}
+		],
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	},
+	{
+		"descriptionId": "2472261015",
+		"conceptId": "410607006",
+		"type": {
+			"conceptId": "900000000000013009",
+			"defaultTerm": "Synonym (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"lang": "en",
+		"term": "Organism",
+		"length": 8,
+		"ics": {
+			"conceptId": "900000000000020002",
+			"defaultTerm": "Only initial character case insensitive (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"langMemberships": [
+			{
+				"descriptionId": "2472261015",
+				"refset": {
+					"conceptId": "900000000000508004",
+					"defaultTerm": "Great Britain English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "0c89c7cb-a927-5cc6-969e-e76e17f6bf51",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			},
+			{
+				"descriptionId": "2472261015",
+				"refset": {
+					"conceptId": "900000000000509007",
+					"defaultTerm": "United States of America English language reference set (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"acceptability": {
+					"conceptId": "900000000000548007",
+					"defaultTerm": "Preferred (foundation metadata concept)",
+					"definitionStatus": "Primitive",
+					"active": true,
+					"effectiveTime": "20020131",
+					"module": "900000000000012004"
+				},
+				"uuid": "cd9eecfe-badc-5ca2-9874-7cf0f1077eb7",
+				"active": true,
+				"effectiveTime": "20040731",
+				"module": "900000000000207008"
+			}
+		],
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "relationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "138875005",
+			"defaultTerm": "SNOMED CT Concept (SNOMED RT+CTV3)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "410607006",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20040731",
+		"module": "900000000000207008"
+	}
+], "statedRelationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "138875005",
+			"defaultTerm": "SNOMED CT Concept (SNOMED RT+CTV3)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "410607006",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000010007",
+			"defaultTerm": "Stated relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20080731",
+		"module": "900000000000207008"
+	}
+], "isLeafInferred": false, "isLeafStated": false, "fsn": "Organism (organism)", "conceptId": "410607006", "defaultTerm": "Organism (organism)", "definitionStatus": "Primitive", "active": true, "effectiveTime": "20040731", "module": "900000000000207008"}

@@ -18,7 +18,7 @@ public class JsonComponentMerge {
 		arrayMemberIdentifierKey.put("relationships", "type.conceptId,target.conceptId");
 	}
 
-	public String mergeConcept(String baseConcept, String deltaConcept) throws JsonComponentMergeException {
+	public String mergeComponent(String baseConcept, String deltaConcept) throws JsonComponentMergeException {
 		JSONObject base = new OrderedConceptJsonObject(baseConcept);
 		JSONObject delta = new JSONObject(deltaConcept);
 
