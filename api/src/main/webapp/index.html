@@ -36,20 +36,33 @@
 		"isLeafInferred": true,
 		"isLeafStated": true,
 		"descriptions": [], "relationships": [], "statedRelationships": []
-		}</textarea>
+}</textarea>
 	<div class="jsonContainer" data-url="/api/concepts/authoring-team" data-method="post"></div>
+</div>
+
+<div class="demoStep">
+	<h4>Update concept, setting active flag in authoring branch "Macklemore membrane (body structure)"</h4>
+	<textarea>{
+		"conceptId": "{{lastConceptId}}",
+		"active": false
+}</textarea>
+	<div class="jsonContainer" data-url="/api/concepts/authoring-team/{{lastConceptId}}" data-method="put"></div>
 </div>
 
 <style>
 	.jsonContainer {
 		display: block;
-		width: 100%;
+		width: 80%;
 		height: 300px;
 		border: 1px solid grey;
 		overflow: scroll;
 	}
 	.syntaxhighlighter .toolbar {
 		display: none;
+	}
+	textarea {
+		width: 500px;
+		height: 160px;
 	}
 </style>
 <script type='text/javascript' src='lib/syntax-highlighter/js/shCore.js' ></script>
@@ -60,39 +73,44 @@
 		console.log(string);
 	}
 
-	$(document).ready(function() {
-		var $demoSteps = $('.demoStep');
-		var step = 0;
-		var interval = setInterval(function () {
-			if ($demoSteps.size() > step) {
-				log('step ' + step);
-				var demoStep = $demoSteps[step++];
-				$('.jsonContainer', demoStep).each(function (index, jsonContainer) {
-					var $jsonContainer = $(this);
-					var dataUrl = $jsonContainer.attr('data-url');
-					var dataMethod = $jsonContainer.attr('data-method');
-					var data = null;
-					if (dataMethod == null) {
-						dataMethod = "get";
-					} else if (dataMethod == "post") {
-						data = $('textarea', demoStep).text();
-					}
-					$.ajax({
-						url: dataUrl,
-						type: dataMethod,
-						data: data,
-						success: function (response, textStatus, jqXHR) {
-							var json = JSON.stringify(response, null, " ")
-							$jsonContainer.html('<script type=\"syntaxhighlighter\" class=\"brush: js\">\<![CDATA[' + json + ']]><\/script>');
-							SyntaxHighlighter.highlight();
-						}
-					})
-				})
-			} else {
-				log('steps finished');
-				clearInterval(interval);
+	var lastConceptId = null;
+
+	function runDemoStep($demoSteps, step) {
+		log('step ' + step);
+		var demoStep = $demoSteps[step];
+		$('.jsonContainer', demoStep).each(function (index, jsonContainer) {
+			var $jsonContainer = $(this);
+			var dataUrl = $jsonContainer.attr('data-url').replace("{{lastConceptId}}", lastConceptId);
+			var dataMethod = $jsonContainer.attr('data-method');
+			var data = null;
+			if (dataMethod == null) {
+				dataMethod = "get";
+			} else if (dataMethod == "post" || dataMethod == "put") {
+				data = $('textarea', demoStep).text().replace("{{lastConceptId}}", lastConceptId);
 			}
-		}, 0);
+			log(dataMethod + " to " + dataUrl);
+			$.ajax({
+				url: dataUrl,
+				type: dataMethod,
+				data: data,
+				success: function (response, textStatus, jqXHR) {
+					lastConceptId = response.conceptId;
+					log('conceptId ' + lastConceptId);
+					var json = JSON.stringify(response, null, " ")
+					$jsonContainer.html('<script type=\"syntaxhighlighter\" class=\"brush: js\">\<![CDATA[' + json + ']]><\/script>');
+					SyntaxHighlighter.highlight();
+
+					if ($demoSteps.size() > ++step) {
+						runDemoStep($demoSteps, step);
+					}
+				}
+			})
+		})
+	}
+
+	$(document).ready(function() {
+		var step = 0;
+		runDemoStep($('.demoStep'), 0);
 	})
 </script>
 </body>

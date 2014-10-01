@@ -1,0 +1,311 @@
+{"_id": "540f65722ae8860193e22448",
+	"conceptId": "431371001",
+	"effectiveTime": "20080731",
+	"active": false,
+	"module": "123",
+	"definitionStatus": "Fully defined",
+	"fsn": "Folds of Bowman's membrane (disorder)",
+	"defaultTerm": "Folds of Bowman's membrane (disorder)",
+	"isLeafInferred": true,
+	"isLeafStated": true,
+	"descriptions": [
+		{
+			"descriptionId": "3004398014",
+			"conceptId": "431371001",
+			"type": {
+				"conceptId": "900000000000013009",
+				"defaultTerm": "Synonym (core metadata concept)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000012004"
+			},
+			"lang": "en",
+			"term": "Bowmans membrane fold",
+			"length": 21,
+			"active": true,
+			"effectiveTime": "20140731",
+			"module": "900000000000207008"
+		},
+		{
+			"descriptionId": "2746189011",
+			"conceptId": "431371001",
+			"type": {
+				"conceptId": "900000000000003001",
+				"defaultTerm": "Fully specified name (core metadata concept)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000012004"
+			},
+			"lang": "en",
+			"term": "Folds of Bowman's membrane (disorder)",
+			"length": 37,
+			"active": true,
+			"effectiveTime": "20080731",
+			"module": "900000000000207008"
+		},
+		{
+			"descriptionId": "2772152017",
+			"conceptId": "431371001",
+			"type": {
+				"conceptId": "900000000000013009",
+				"defaultTerm": "Synonym (core metadata concept)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000012004"
+			},
+			"lang": "en",
+			"term": "Folds of Bowman's membrane",
+			"length": 26,
+			"active": true,
+			"effectiveTime": "20080731",
+			"module": "900000000000207008"
+		},
+		{
+			"descriptionId": "2838971018",
+			"conceptId": "431371001",
+			"type": {
+				"conceptId": "900000000000013009",
+				"defaultTerm": "Synonym (core metadata concept)",
+				"definitionStatus": "Primitive",
+				"active": true,
+				"effectiveTime": "20020131",
+				"module": "900000000000012004"
+			},
+			"lang": "en",
+			"term": "Folds of Bowman membrane",
+			"length": 24,
+			"active": true,
+			"effectiveTime": "20100131",
+			"module": "900000000000207008"
+		}
+	], "relationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "45382000",
+			"defaultTerm": "Folds AND/OR rupture of Bowman's membrane (disorder)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20080731",
+		"module": "900000000000207008"
+	},
+	{
+		"type": {
+			"conceptId": "116676008",
+			"defaultTerm": "Associated morphology (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "26310004",
+			"defaultTerm": "Folded structure (morphologic abnormality)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 1,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": false,
+		"effectiveTime": "20090131",
+		"module": "900000000000207008"
+	},
+	{
+		"type": {
+			"conceptId": "363698007",
+			"defaultTerm": "Finding site (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "55143001",
+			"defaultTerm": "Structure of Bowman's layer (body structure)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 1,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": false,
+		"effectiveTime": "20090131",
+		"module": "900000000000207008"
+	},
+	{
+		"type": {
+			"conceptId": "116676008",
+			"defaultTerm": "Associated morphology (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "26310004",
+			"defaultTerm": "Folded structure (morphologic abnormality)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 1,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20090131",
+		"module": "900000000000207008"
+	},
+	{
+		"type": {
+			"conceptId": "363698007",
+			"defaultTerm": "Finding site (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "55143001",
+			"defaultTerm": "Structure of Bowman's layer (body structure)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 1,
+		"charType": {
+			"conceptId": "900000000000011006",
+			"defaultTerm": "Inferred relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20090131",
+		"module": "900000000000207008"
+	}
+], "statedRelationships": [
+	{
+		"type": {
+			"conceptId": "116680003",
+			"defaultTerm": "Is a (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "45382000",
+			"defaultTerm": "Folds AND/OR rupture of Bowman's membrane (disorder)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 0,
+		"charType": {
+			"conceptId": "900000000000010007",
+			"defaultTerm": "Stated relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20080731",
+		"module": "900000000000207008"
+	},
+	{
+		"type": {
+			"conceptId": "363698007",
+			"defaultTerm": "Finding site (attribute)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20110131",
+			"module": "900000000000012004"
+		},
+		"target": {
+			"conceptId": "55143001",
+			"defaultTerm": "Structure of Bowman's layer (body structure)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000207008"
+		},
+		"sourceId": "431371001",
+		"groupId": 1,
+		"charType": {
+			"conceptId": "900000000000010007",
+			"defaultTerm": "Stated relationship (core metadata concept)",
+			"definitionStatus": "Primitive",
+			"active": true,
+			"effectiveTime": "20020131",
+			"module": "900000000000012004"
+		},
+		"modifier": "Existential restriction",
+		"active": true,
+		"effectiveTime": "20080731",
+		"module": "900000000000207008"
+	}
+]
+}

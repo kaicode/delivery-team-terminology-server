@@ -83,4 +83,18 @@ public class ConceptServiceTest {
 		JSONAssert.assertEquals(concept, loadedConcept, true);
 	}
 
+	@Test
+	public void testUpdateConceptOnBranch() throws IOException, JsonComponentMergeException, InvalidOperationException {
+		String expectedBranchConcept = StreamUtils.readStream(getClass().getResourceAsStream("431371001-authoring-team-branch.json"));
+		String conceptId = "431371001";
+		JSONAssert.assertEquals(expectedBranchConcept, conceptService.loadConcept(conceptId, AUTHORING_TEAM_BRANCH), true);
+
+		String expectedUpdatedBranchConcept = StreamUtils.readStream(getClass().getResourceAsStream("431371001-authoring-team-branch-updated.json"));
+
+		String updatedConcept = conceptService.updateConcept(conceptId, AUTHORING_TEAM_BRANCH, "{ \"module\": \"123\" }");
+
+		JSONAssert.assertEquals(expectedUpdatedBranchConcept, updatedConcept, true);
+		JSONAssert.assertEquals(expectedUpdatedBranchConcept, conceptService.loadConcept(conceptId, AUTHORING_TEAM_BRANCH), true);
+	}
+
 }

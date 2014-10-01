@@ -30,7 +30,7 @@ public class JsonComponentMerge {
 	private JSONObject mergeObjects(JSONObject base, JSONObject delta) throws JsonComponentMergeException {
 		Set<String> keys = delta.keySet();
 		for (String key : keys) {
-			Object baseAttribute = base.get(key);
+			Object baseAttribute = getAttributeOrNull(base, key);
 			Object deltaAttribute = delta.get(key);
 			if (baseAttribute != null) {
 				if (baseAttribute.getClass().equals(deltaAttribute.getClass())) {
@@ -100,6 +100,10 @@ public class JsonComponentMerge {
 			}
 		}
 		return null;
+	}
+
+	private Object getAttributeOrNull(JSONObject jsonObject, String key) {
+		return jsonObject.has(key) ? jsonObject.get(key) : null;
 	}
 
 }

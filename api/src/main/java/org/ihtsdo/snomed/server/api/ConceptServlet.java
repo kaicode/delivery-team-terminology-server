@@ -90,4 +90,30 @@ public class ConceptServlet extends HttpServlet {
 			}
 		}
 	}
+
+	@Override
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pathInfo = request.getPathInfo();
+		if (pathInfo != null && !pathInfo.isEmpty()) {
+			String[] pathParts = pathInfo.split("/");
+			if (pathParts.length == 3) {
+				String branch = pathParts[1];
+				String conceptId = pathParts[2];
+
+				ServletInputStream inputStream = request.getInputStream();
+				String conceptUpdates = StreamUtils.readStream(inputStream);
+				try {
+					String concept = conceptService.updateConcept(conceptId, branch, conceptUpdates);
+					response.setContentType(APPLICATION_JSON);
+					response.getWriter().print(concept);
+				} catch (InvalidOperationException e) {
+					e.printStackTrace(); // todo: logging
+					response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+				} catch (JsonComponentMergeException e) {
+					e.printStackTrace(); // todo: logging
+					response.setStatus(500);
+				}
+			}
+		}
+	}
 }

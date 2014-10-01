@@ -94,16 +94,32 @@ public class ConceptService {
 			JSONObject concept = new JSONObject(newConcept);
 			String conceptId = UUID.randomUUID().toString();
 			concept.put("conceptId", conceptId); // Set new UUID conceptId
-			String conceptPath = getConceptPath(conceptId, branch);
 			String conceptString = concept.toString();
-			File file = new File(conceptStore, conceptPath);
-			file.createNewFile();
-			try (FileWriter writer = new FileWriter(file)) {
-				writer.write(conceptString);
-			}
+			persistConcept(branch, conceptId, conceptString);
 			return conceptString;
 		} else {
 			throw new InvalidOperationException("Can not modify the master branch directly.");
+		}
+	}
+
+	public String updateConcept(String conceptId, String branch, String conceptUpdates) throws InvalidOperationException, IOException, JsonComponentMergeException {
+		// TODO: validateUpdateContent(newConcept)
+		if (!branch.equals(MASTER)) {
+			String conceptDelta = getConceptString(conceptId, branch);
+			String modifiedConceptDelta = jsonComponentMerge.mergeComponent(conceptDelta, conceptUpdates);
+			persistConcept(branch, conceptId, modifiedConceptDelta);
+			return loadConcept(conceptId, branch);
+		} else {
+			throw new InvalidOperationException("Can not modify the master branch directly.");
+		}
+	}
+
+	private void persistConcept(String branch, String conceptId, String conceptString) throws IOException {
+		String conceptPath = getConceptPath(conceptId, branch);
+		File file = new File(conceptStore, conceptPath);
+		file.createNewFile();
+		try (FileWriter writer = new FileWriter(file)) {
+			writer.write(conceptString);
 		}
 	}
 
@@ -114,10 +130,10 @@ public class ConceptService {
 	private String getConceptChildrenString(String conceptId, String branch) throws IOException {
 		return readFileOrNull(new File(conceptStore, getConceptPath(conceptId, branch, "-children")));
 	}
-
 	private String getConceptPath(String conceptId, String branch) {
 		return getConceptPath(conceptId, branch, "");
 	}
+
 	private String getConceptPath(String conceptId, String branch, String postfix) {
 		String branchPath = branch;
 		if (!branch.equals(MASTER)) {
@@ -133,5 +149,4 @@ public class ConceptService {
 			return null;
 		}
 	}
-
 }
