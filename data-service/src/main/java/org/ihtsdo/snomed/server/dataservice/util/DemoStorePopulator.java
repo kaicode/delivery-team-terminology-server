@@ -36,7 +36,6 @@ public class DemoStorePopulator {
 					if (!zipEntry.isDirectory()) {
 						String name = zipEntry.getName();
 						if (name.startsWith(DEMO_STORE)) {
-							System.out.println("Loading " + name);
 							File newFile = new File(conceptStore, name.substring(DEMO_STORE.length() + 1));
 							newFile.mkdirs();
 							Files.copy(zip, newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
