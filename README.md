@@ -1,7 +1,7 @@
-Delivery Team Terminology Server
-================================
+Document Based Terminology Server - POC
+=======================================
 
-A terminology server in development by the delivery team devs.
+This is a proof of concept terminology server based on json document persistence.
 
 # Aims
 This server aims to support browsing and authoring of multiple versions of the snomed product whilest being lightning fast and requiring only modest hardware.
